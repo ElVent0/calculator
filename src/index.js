@@ -1,133 +1,145 @@
 // import functionOne from './js/function';
 
-const inputEl = document.querySelector('[data-input]');
-const clearEl = document.querySelector('[data-clear]');
-const clearHistoryEl = document.querySelector('[data-clear-history]');
-const bracketLeftEl = document.querySelector('[data-bracket-left]');
-const bracketRightEl = document.querySelector('[data-bracket-right]');
-const interestEl = document.querySelector('[data-interest]');
-const acEl = document.querySelector('[data-ac]');
-const piEl = document.querySelector('[data-pi]');
-const sinEl = document.querySelector('[data-sin]');
-const squareEl = document.querySelector('[data-square]');
-const oneEl = document.querySelector('[data-one]');
-const twoEl = document.querySelector('[data-two]');
-const threeEl = document.querySelector('[data-three]');
-const divisionEl = document.querySelector('[data-division]');
-const eEl = document.querySelector('[data-e]');
-const cosEl = document.querySelector('[data-cos]');
-const sqrtEl = document.querySelector('[data-sqrt]');
-const fourEl = document.querySelector('[data-four]');
-const fiveEl = document.querySelector('[data-five]');
-const sixEl = document.querySelector('[data-six]');
-const multiplicationEl = document.querySelector('[data-multiplication]');
+const listEl = document.querySelector('[data-info="list"]');
+const inputEl = document.querySelector('[data-info="input"]');
+const clearEl = document.querySelector('[data-info="AC"]');
+const clearHistoryEl = document.querySelector('[data-info="clearHistory"]');
+const bracketLeftEl = document.querySelector('[data-info="("]');
+const bracketRightEl = document.querySelector('[data-info=")"]');
+const interestEl = document.querySelector('[data-info="%"]');
+const acEl = document.querySelector('[data-info="AC"]');
+const piEl = document.querySelector('[data-info="pi"]');
+const sinEl = document.querySelector('[data-info="sin"]');
+const squareEl = document.querySelector('[data-info="x^2"]');
+const oneEl = document.querySelector('[data-info="1"]');
+const twoEl = document.querySelector('[data-info="2"]');
+const threeEl = document.querySelector('[data-info="3"]');
+const divisionEl = document.querySelector('[data-info="/"]');
+const eEl = document.querySelector('[data-info="e"]');
+const cosEl = document.querySelector('[data-info="cos"]');
+const sqrtEl = document.querySelector('[data-info="sqrt"]');
+const fourEl = document.querySelector('[data-info="4"]');
+const fiveEl = document.querySelector('[data-info="5"]');
+const sixEl = document.querySelector('[data-info="6"]');
+const multiplicationEl = document.querySelector('[data-info="*"]');
 // const inputEl = document.querySelector('[data-input]');
-const tanEl = document.querySelector('[data-tan]');
-const factorialEl = document.querySelector('[data-factorial]');
-const sevenEl = document.querySelector('[data-seven]');
-const eightEl = document.querySelector('[data-eight]');
-const nineEl = document.querySelector('[data-nine]');
-const minusEl = document.querySelector('[data-minus]');
-// const inputEl = document.querySelector('[data-input]');
-const lnEl = document.querySelector('[data-ln]');
-const logEl = document.querySelector('[data-log]');
-const zeroEl = document.querySelector('[data-zero]');
-const dotEl = document.querySelector('[data-dot]');
-const equalEl = document.querySelector('[data-equal]');
-const plusEl = document.querySelector('[data-plus]');
+const tanEl = document.querySelector('[data-info="tan"]');
+const factorialEl = document.querySelector('[data-info="!"]');
+const sevenEl = document.querySelector('[data-info="7"]');
+const eightEl = document.querySelector('[data-info="8"]');
+const nineEl = document.querySelector('[data-info="9"]');
+const minusEl = document.querySelector('[data-info="-"]');
+// const inputEl = document.querySelector('[data-info=""]');
+const lnEl = document.querySelector('[data-info="ln"]');
+const logEl = document.querySelector('[data-info="log"]');
+const zeroEl = document.querySelector('[data-info="0"]');
+const dotEl = document.querySelector('[data-info="."]');
+const equalEl = document.querySelector('[data-info="="]');
+const plusEl = document.querySelector('[data-info="+"]');
 
 let inputValue = '';
 const inputArray = [];
 
-// inputArray.push(element);
+// inputEl.addEventListener('click', e => {});
 
-inputEl.addEventListener('click', e => {});
-
-oneEl.addEventListener('click', e => {
-  inputArray.push('1');
-
+listEl.addEventListener('click', e => {
+  const value = e.target.dataset.info;
+  if (value === '=') {
+    onSolve();
+    return;
+  }
+  if (value === '+' || value === '-' || value === '*' || value === '/') {
+    inputArray.push(` ${value} `);
+    onInput(` ${value} `);
+    return;
+  }
+  inputArray.push(value);
   onInput();
 });
-twoEl.addEventListener('click', e => {
-  inputArray.push('2');
 
-  onInput();
-});
-threeEl.addEventListener('click', e => {
-  inputArray.push('3');
+// oneEl.addEventListener('click', e => {
+//   inputArray.push('1');
+//   onInput();
+// });
+// twoEl.addEventListener('click', e => {
+//   inputArray.push('2');
 
-  onInput();
-});
-fourEl.addEventListener('click', e => {
-  inputArray.push('4');
+//   onInput();
+// });
+// threeEl.addEventListener('click', e => {
+//   inputArray.push('3');
 
-  onInput();
-});
-fiveEl.addEventListener('click', e => {
-  inputArray.push('5');
+//   onInput();
+// });
+// fourEl.addEventListener('click', e => {
+//   inputArray.push('4');
 
-  onInput();
-});
-sixEl.addEventListener('click', e => {
-  inputArray.push('6');
+//   onInput();
+// });
+// fiveEl.addEventListener('click', e => {
+//   inputArray.push('5');
 
-  onInput();
-});
-sevenEl.addEventListener('click', e => {
-  inputArray.push('7');
+//   onInput();
+// });
+// sixEl.addEventListener('click', e => {
+//   inputArray.push('6');
 
-  onInput();
-});
-eightEl.addEventListener('click', e => {
-  inputArray.push('8');
+//   onInput();
+// });
+// sevenEl.addEventListener('click', e => {
+//   inputArray.push('7');
 
-  onInput();
-});
-nineEl.addEventListener('click', e => {
-  inputArray.push('9');
+//   onInput();
+// });
+// eightEl.addEventListener('click', e => {
+//   inputArray.push('8');
 
-  onInput();
-});
-zeroEl.addEventListener('click', e => {
-  inputArray.push('0');
+//   onInput();
+// });
+// nineEl.addEventListener('click', e => {
+//   inputArray.push('9');
 
-  onInput();
-});
-plusEl.addEventListener('click', e => {
-  inputArray.push(' + ');
+//   onInput();
+// });
+// zeroEl.addEventListener('click', e => {
+//   inputArray.push('0');
 
-  onInput(' + ');
-});
-minusEl.addEventListener('click', e => {
-  inputArray.push(' - ');
+//   onInput();
+// });
+// plusEl.addEventListener('click', e => {
+//   inputArray.push(' + ');
 
-  onInput(' - ');
-});
-multiplicationEl.addEventListener('click', e => {
-  inputArray.push(' * ');
+//   onInput(' + ');
+// });
+// minusEl.addEventListener('click', e => {
+//   inputArray.push(' - ');
 
-  onInput(' * ');
-});
-divisionEl.addEventListener('click', e => {
-  inputArray.push(' / ');
+//   onInput(' - ');
+// });
+// multiplicationEl.addEventListener('click', e => {
+//   inputArray.push(' * ');
 
-  onInput(' / ');
-});
-dotEl.addEventListener('click', e => {
-  inputArray.push('.');
+//   onInput(' * ');
+// });
+// divisionEl.addEventListener('click', e => {
+//   inputArray.push(' / ');
 
-  onInput(' . ');
-});
-equalEl.addEventListener('click', e => {
-  onSolve();
-});
+//   onInput(' / ');
+// });
+// dotEl.addEventListener('click', e => {
+//   inputArray.push('.');
+
+//   onInput(' . ');
+// });
+// equalEl.addEventListener('click', e => {
+//   onSolve();
+// });
 
 function onInput(symbol) {
   isCorrectInput(symbol);
   inputValue = inputArray.join('');
   inputEl.value = inputValue;
 }
-
 function onSolve() {
   if (inputValue === '') {
     return;
