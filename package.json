@@ -1,0 +1,32 @@
+{
+  "name": "parcel-pattern",
+  "version": "2.0.0",
+  "description": "",
+  "homepage": "https://ElVent0.github.io/parcel-pattern",
+  "scripts": {
+    "start": "parcel src/*.html",
+    "build": "parcel build src/*.html --public-url /parcel-pattern/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ElVent0/parcel-pattern.git"
+  },
+  "keywords": [],
+  "author": "Vasyl Tarasyuk <vasylviter95@gmail.comm>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ElVent0/parcel-pattern/issues"
+  },
+  "dependencies": {
+    "modern-normalize": "^1.1.0"
+  },
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.6.0",
+    "buffer": "^6.0.3",
+    "parcel": "^2.6.0",
+    "parcel-reporter-clean-dist": "^1.0.4",
+    "posthtml-include": "^1.7.4",
+    "process": "^0.11.10"
+  },
+  "browserslist": "> 0.5%, last 2 versions, not dead"
+}
