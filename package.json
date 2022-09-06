@@ -1,21 +1,21 @@
 {
-  "name": "parcel-pattern",
+  "name": "calculator",
   "version": "2.0.0",
   "description": "",
-  "homepage": "https://ElVent0.github.io/parcel-pattern",
+  "homepage": "https://ElVent0.github.io/calculator",
   "scripts": {
     "start": "parcel src/*.html",
-    "build": "parcel build src/*.html --public-url /parcel-pattern/"
+    "build": "parcel build src/*.html --public-url /calculator/"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ElVent0/parcel-pattern.git"
+    "url": "git+https://github.com/ElVent0/calculator.git"
   },
   "keywords": [],
   "author": "Vasyl Tarasyuk <vasylviter95@gmail.comm>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ElVent0/parcel-pattern/issues"
+    "url": "https://github.com/ElVent0/calculator/issues"
   },
   "dependencies": {
     "modern-normalize": "^1.1.0"
