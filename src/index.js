@@ -1,3 +1,5 @@
+import Notiflix from 'notiflix';
+
 const listEl = document.querySelector('[data-info="list"]');
 const inputEl = document.querySelector('[data-info="input"]');
 const historyEl = document.querySelector('.history__list');
@@ -127,7 +129,7 @@ function isCorrectInput(symbol) {
     inputArray[0] === '.'
   ) {
     inputArray.pop();
-    alert('Це не може бути першим символом');
+    Notiflix.Notify.info('Це не може бути першим символом');
     return;
   }
   if (
@@ -149,7 +151,7 @@ function isCorrectInput(symbol) {
   }
   if (symbol === '0' && inputArray[inputArray.length - 2] === ' / ') {
     inputArray.pop();
-    alert('На нуль не ділимо');
+    Notiflix.Notify.info('На нуль ділити не можна');
     return;
   }
   if (
