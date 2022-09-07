@@ -2,12 +2,12 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-73%, -50%);
+  transform: translate(-77%, -50%);
   display: flex;
   &__input {
     display: block;
-    width: 350px;
-    height: 60px;
+    width: 240px;
+    height: 50px;
     background-color: var(--white-button);
     border: 1px solid transparent;
     border-radius: 5px;
@@ -16,7 +16,7 @@
     font-size: 20px;
     line-height: 24px;
     color: var(--grey-text);
-    margin-left: 60px;
+    margin-left: 50px;
     &:focus,
     &:hover {
       outline: none;
@@ -28,8 +28,8 @@
     top: 50%;
     transform: translateY(-50%);
     background-color: transparent;
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
     background-color: var(--grey-button);
     border: transparent;
     cursor: pointer;
@@ -44,7 +44,8 @@
   }
 }
 .container__list {
-  width: 410px;
+  width: 290px;
+  height: 320px;
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
@@ -89,19 +90,22 @@
   &--input {
     box-sizing: content-box;
     display: block;
-    width: 410px;
-    height: 60px;
+    width: 290px;
+    height: 50px;
     background-color: var(--grey-button);
     border: 1px solid var(--grey-button);
     position: relative;
-    top: -20px;
+    margin-bottom: 10px;
     &:hover,
     &:focus {
       background-color: var(--grey-button);
     }
   }
   &--clear {
-    width: 170px;
+    font-size: 10.4px;
+    line-height: 15px;
+    width: 110px;
+    padding: 14px;
   }
 }
 
@@ -113,15 +117,28 @@
 
 .history {
   width: 300px;
+  height: 320px;
   margin-right: 40px;
-  margin-top: -20px;
-}
-.history__list {
 }
 .history__item {
   font-size: 18px;
   line-height: 15px;
-  color: rgba(111, 111, 111, 0.3);
+  color: rgba(111, 111, 111, 0.8);
   margin-bottom: 16px;
   text-align: right;
+}
+
+.animate {
+  animation: animationOnMove 1s linear;
+}
+
+@keyframes animationOnMove {
+  0% {
+    margin-top: -31px;
+    opacity: 0%;
+  }
+  100% {
+    margin-top: 0px;
+    opacity: 100%;
+  }
 }

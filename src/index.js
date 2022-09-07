@@ -1,41 +1,6 @@
-// import functionOne from './js/function';
-
 const listEl = document.querySelector('[data-info="list"]');
 const inputEl = document.querySelector('[data-info="input"]');
-const clearEl = document.querySelector('[data-info="AC"]');
-const clearHistoryEl = document.querySelector('[data-info="clearHistory"]');
-const bracketLeftEl = document.querySelector('[data-info="("]');
-const bracketRightEl = document.querySelector('[data-info=")"]');
-const interestEl = document.querySelector('[data-info="%"]');
-const acEl = document.querySelector('[data-info="AC"]');
-const piEl = document.querySelector('[data-info="pi"]');
-const sinEl = document.querySelector('[data-info="sin"]');
-const squareEl = document.querySelector('[data-info="x^2"]');
-const oneEl = document.querySelector('[data-info="1"]');
-const twoEl = document.querySelector('[data-info="2"]');
-const threeEl = document.querySelector('[data-info="3"]');
-const divisionEl = document.querySelector('[data-info="/"]');
-const eEl = document.querySelector('[data-info="e"]');
-const cosEl = document.querySelector('[data-info="cos"]');
-const sqrtEl = document.querySelector('[data-info="sqrt"]');
-const fourEl = document.querySelector('[data-info="4"]');
-const fiveEl = document.querySelector('[data-info="5"]');
-const sixEl = document.querySelector('[data-info="6"]');
-const multiplicationEl = document.querySelector('[data-info="*"]');
-// const inputEl = document.querySelector('[data-input]');
-const tanEl = document.querySelector('[data-info="tan"]');
-const factorialEl = document.querySelector('[data-info="!"]');
-const sevenEl = document.querySelector('[data-info="7"]');
-const eightEl = document.querySelector('[data-info="8"]');
-const nineEl = document.querySelector('[data-info="9"]');
-const minusEl = document.querySelector('[data-info="-"]');
-// const inputEl = document.querySelector('[data-info=""]');
-const lnEl = document.querySelector('[data-info="ln"]');
-const logEl = document.querySelector('[data-info="log"]');
-const zeroEl = document.querySelector('[data-info="0"]');
-const dotEl = document.querySelector('[data-info="."]');
-const equalEl = document.querySelector('[data-info="="]');
-const plusEl = document.querySelector('[data-info="+"]');
+const historyEl = document.querySelector('.history__list');
 
 let inputValue = '';
 const inputArray = [];
@@ -75,7 +40,6 @@ listEl.addEventListener('click', e => {
     }
     inputArray.pop();
     onInput();
-    // console.log(inputValue, inputArray);
     return;
   }
   if (value === 'clearInput') {
@@ -83,157 +47,51 @@ listEl.addEventListener('click', e => {
       inputArray.pop();
     }
     onInput();
-    // console.log(inputValue, inputArray);
     return;
   }
-  if (value === 'list') {
-    return;
-  }
-  if (value === 'e') {
-    inputArray.push('2.7182');
-    onInput();
+  if (value === 'list' || value === 'input') {
     return;
   }
   if (value === 'pi') {
-    inputArray.push('3.14159265359');
+    inputArray.push('3.1415');
     onInput();
     return;
   }
-  if (value === 'sin') {
-    inputArray.push('');
-    onInput();
-    return;
-  }
-  if (value === 'cos') {
-    inputArray.push('');
-    onInput();
-    return;
-  }
-  if (value === 'tan') {
-    inputArray.push('');
-    onInput();
-    return;
-  }
-  if (value === 'ln') {
-    inputArray.push('');
-    onInput();
-    return;
-  }
+
   if (value === 'x^2') {
-    inputArray.push('');
+    const num = Number(inputArray[inputArray.length - 1]);
+    inputArray.pop();
+    inputArray.push(`Math.pow(${num}, 2)`);
     onInput();
     return;
   }
   if (value === 'sqrt') {
-    inputArray.push('');
+    const num = Number(inputArray[inputArray.length - 1]);
+    inputArray.pop();
+    inputArray.push(`Math.sqrt(${num}, 2)`);
     onInput();
     return;
   }
-  if (value === '!') {
-    inputArray.push(value);
+  if (value === 'factorial') {
+    inputArray.push('!');
     onInput(value);
     return;
   }
-  if (value === 'log') {
-    inputArray.push('');
-    onInput();
-    return;
-  }
-  if (value === '%') {
-    inputArray.push('');
-    onInput();
+  if (value === 'clearHistory') {
+    historyEl.innerHTML = '';
     return;
   }
   inputArray.push(value);
   onInput();
 });
 
-// oneEl.addEventListener('click', e => {
-//   inputArray.push('1');
-//   onInput();
-// });
-// twoEl.addEventListener('click', e => {
-//   inputArray.push('2');
-
-//   onInput();
-// });
-// threeEl.addEventListener('click', e => {
-//   inputArray.push('3');
-
-//   onInput();
-// });
-// fourEl.addEventListener('click', e => {
-//   inputArray.push('4');
-
-//   onInput();
-// });
-// fiveEl.addEventListener('click', e => {
-//   inputArray.push('5');
-
-//   onInput();
-// });
-// sixEl.addEventListener('click', e => {
-//   inputArray.push('6');
-
-//   onInput();
-// });
-// sevenEl.addEventListener('click', e => {
-//   inputArray.push('7');
-
-//   onInput();
-// });
-// eightEl.addEventListener('click', e => {
-//   inputArray.push('8');
-
-//   onInput();
-// });
-// nineEl.addEventListener('click', e => {
-//   inputArray.push('9');
-
-//   onInput();
-// });
-// zeroEl.addEventListener('click', e => {
-//   inputArray.push('0');
-
-//   onInput();
-// });
-// plusEl.addEventListener('click', e => {
-//   inputArray.push(' + ');
-
-//   onInput(' + ');
-// });
-// minusEl.addEventListener('click', e => {
-//   inputArray.push(' - ');
-
-//   onInput(' - ');
-// });
-// multiplicationEl.addEventListener('click', e => {
-//   inputArray.push(' * ');
-
-//   onInput(' * ');
-// });
-// divisionEl.addEventListener('click', e => {
-//   inputArray.push(' / ');
-
-//   onInput(' / ');
-// });
-// dotEl.addEventListener('click', e => {
-//   inputArray.push('.');
-
-//   onInput(' . ');
-// });
-// equalEl.addEventListener('click', e => {
-//   onSolve();
-// });
-
 function onInput(symbol) {
   isCorrectInput(symbol);
   if (symbol === '.') {
     checkDots();
   }
-  if (symbol === '!') {
-    inputValue = inputArray.join('');
-    inputEl.value = inputValue;
+  if (symbol === 'factorial') {
+    checkFactorial();
   }
   inputValue = inputArray.join('');
   inputEl.value = inputValue;
@@ -245,6 +103,7 @@ function onSolve() {
   checkZeros();
   const result = eval(inputValue);
   inputEl.value = result;
+  setTimeout(renderHistory(result), 1000);
   inputValue = '';
   inputArray.splice(0, inputArray.length);
   inputArray.push(result);
@@ -402,4 +261,41 @@ function checkDots() {
       inputArray.pop();
     }
   });
+}
+
+function checkFactorial() {
+  const elementOfArray = inputValue.split(' ');
+  elementOfArray.map(item => {
+    const miniArray = item.split('');
+    const number = miniArray.length + 2;
+    const count = Number(item);
+    let numb = 1;
+    for (let i = 1; i < count + 1; i += 1) {
+      numb = numb * i;
+    }
+    let numbArray = numb.toString().split('');
+    while (miniArray.length !== 0) {
+      miniArray.pop();
+    }
+    for (let i = 1; i < number; i += 1) {
+      inputArray.pop();
+    }
+    for (let a of numbArray) {
+      inputArray.push(a);
+    }
+    numb = 1;
+    if (miniArray.includes('.')) {
+      inputArray.pop();
+    }
+  });
+}
+
+function renderHistory(result) {
+  if (historyEl.children.length === 10) {
+    historyEl.removeChild(historyEl.lastElementChild);
+  }
+  const markup = `<li class="history__item"><span class="opacity">${inputValue}</span>&nbsp&nbsp = &nbsp&nbsp<b>${result}</b></li>`;
+  historyEl.insertAdjacentHTML('afterbegin', markup);
+  const historyItemEl = document.querySelector('.history__item');
+  historyItemEl.classList.add('animate');
 }
