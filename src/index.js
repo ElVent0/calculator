@@ -40,13 +40,10 @@ const plusEl = document.querySelector('[data-info="+"]');
 let inputValue = '';
 const inputArray = [];
 
-// inputEl.addEventListener('click', e => {});
-
 listEl.addEventListener('click', e => {
   const value = e.target.dataset.info;
   if (value === '=') {
     onSolve();
-    // console.log(inputValue, inputArray);
     return;
   }
   if (value === '+' || value === '-' || value === '*' || value === '/') {
@@ -89,7 +86,62 @@ listEl.addEventListener('click', e => {
     // console.log(inputValue, inputArray);
     return;
   }
-  if (value === 'list' || value === 'input') {
+  if (value === 'list') {
+    return;
+  }
+  if (value === 'e') {
+    inputArray.push('2.7182');
+    onInput();
+    return;
+  }
+  if (value === 'pi') {
+    inputArray.push('3.14159265359');
+    onInput();
+    return;
+  }
+  if (value === 'sin') {
+    inputArray.push('');
+    onInput();
+    return;
+  }
+  if (value === 'cos') {
+    inputArray.push('');
+    onInput();
+    return;
+  }
+  if (value === 'tan') {
+    inputArray.push('');
+    onInput();
+    return;
+  }
+  if (value === 'ln') {
+    inputArray.push('');
+    onInput();
+    return;
+  }
+  if (value === 'x^2') {
+    inputArray.push('');
+    onInput();
+    return;
+  }
+  if (value === 'sqrt') {
+    inputArray.push('');
+    onInput();
+    return;
+  }
+  if (value === '!') {
+    inputArray.push(value);
+    onInput(value);
+    return;
+  }
+  if (value === 'log') {
+    inputArray.push('');
+    onInput();
+    return;
+  }
+  if (value === '%') {
+    inputArray.push('');
+    onInput();
     return;
   }
   inputArray.push(value);
@@ -178,6 +230,10 @@ function onInput(symbol) {
   isCorrectInput(symbol);
   if (symbol === '.') {
     checkDots();
+  }
+  if (symbol === '!') {
+    inputValue = inputArray.join('');
+    inputEl.value = inputValue;
   }
   inputValue = inputArray.join('');
   inputEl.value = inputValue;
