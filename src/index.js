@@ -46,11 +46,50 @@ listEl.addEventListener('click', e => {
   const value = e.target.dataset.info;
   if (value === '=') {
     onSolve();
+    // console.log(inputValue, inputArray);
     return;
   }
   if (value === '+' || value === '-' || value === '*' || value === '/') {
     inputArray.push(` ${value} `);
     onInput(` ${value} `);
+    return;
+  }
+  if (value === '%' || value === ')' || value === '^2' || value === '!') {
+    inputArray.push(`${value} `);
+    onInput(`${value} `);
+    return;
+  }
+  if (value === '(') {
+    inputArray.push(` ${value}`);
+    onInput(` ${value} `);
+    return;
+  }
+  if (value === '.' || value === '0') {
+    inputArray.push(value);
+    onInput(value);
+    return;
+  }
+  if (value === 'AC') {
+    if (inputArray[inputArray.length - 2] === '.') {
+      inputArray.pop();
+      inputArray.pop();
+      onInput();
+      return;
+    }
+    inputArray.pop();
+    onInput();
+    // console.log(inputValue, inputArray);
+    return;
+  }
+  if (value === 'clearInput') {
+    while (inputArray.length !== 0) {
+      inputArray.pop();
+    }
+    onInput();
+    // console.log(inputValue, inputArray);
+    return;
+  }
+  if (value === 'list' || value === 'input') {
     return;
   }
   inputArray.push(value);
@@ -137,6 +176,9 @@ listEl.addEventListener('click', e => {
 
 function onInput(symbol) {
   isCorrectInput(symbol);
+  if (symbol === '.') {
+    checkDots();
+  }
   inputValue = inputArray.join('');
   inputEl.value = inputValue;
 }
@@ -150,14 +192,27 @@ function onSolve() {
   inputValue = '';
   inputArray.splice(0, inputArray.length);
   inputArray.push(result);
+  let resultString = `${result}`;
+  let resultArray = resultString.split('');
+  inputArray.pop();
+  resultArray.map(a => {
+    inputArray.push(a);
+  });
 }
 
 function isCorrectInput(symbol) {
   if (
-    inputArray.length === 1 &&
-    (inputArray[0] === ' * ' || inputArray[0] === ' / ')
+    (inputArray.length === 1 &&
+      (inputArray[0] === ' * ' ||
+        inputArray[0] === ' / ' ||
+        inputArray[0] === '% ' ||
+        inputArray[0] === ') ' ||
+        inputArray[0] === '! ' ||
+        inputArray[0] === '^2 ')) ||
+    inputArray[0] === '.'
   ) {
     inputArray.pop();
+    alert('Це не може бути першим символом');
     return;
   }
   if (
@@ -173,6 +228,99 @@ function isCorrectInput(symbol) {
     inputArray.pop();
     return;
   }
+  if (symbol === '.' && inputArray[inputArray.length - 2] === '.') {
+    inputArray.pop();
+    return;
+  }
+  if (symbol === '0' && inputArray[inputArray.length - 2] === ' / ') {
+    inputArray.pop();
+    alert('На нуль не ділимо');
+    return;
+  }
+  if (
+    symbol === ' ( ' &&
+    (inputArray[inputArray.length - 2] === '1' ||
+      inputArray[inputArray.length - 2] === '2' ||
+      inputArray[inputArray.length - 2] === '3' ||
+      inputArray[inputArray.length - 2] === '4' ||
+      inputArray[inputArray.length - 2] === '5' ||
+      inputArray[inputArray.length - 2] === '6' ||
+      inputArray[inputArray.length - 2] === '7' ||
+      inputArray[inputArray.length - 2] === '8' ||
+      inputArray[inputArray.length - 2] === '9' ||
+      inputArray[inputArray.length - 2] === '0')
+  ) {
+    inputArray.pop();
+    inputArray.push(' * ');
+    inputArray.push('(');
+    return;
+  }
+  if (
+    symbol === ' ( ' &&
+    (inputArray[inputArray.length - 2] === ' + ' ||
+      inputArray[inputArray.length - 2] === ' - ' ||
+      inputArray[inputArray.length - 2] === ' * ' ||
+      inputArray[inputArray.length - 2] === ' / ' ||
+      inputArray[inputArray.length - 2] === '+ ' ||
+      inputArray[inputArray.length - 2] === '- ' ||
+      inputArray[inputArray.length - 2] === '* ' ||
+      inputArray[inputArray.length - 2] === '/ ')
+  ) {
+    const temporaryValue = inputArray[inputArray.length - 2];
+    inputArray.pop();
+    inputArray.pop();
+    inputArray.push('');
+    inputArray.push(temporaryValue);
+    inputArray.push('(');
+    return;
+  }
+  if (
+    inputArray[inputArray.length - 2] === ') ' &&
+    (inputArray[inputArray.length - 1] === '1' ||
+      inputArray[inputArray.length - 1] === '2' ||
+      inputArray[inputArray.length - 1] === '3' ||
+      inputArray[inputArray.length - 1] === '4' ||
+      inputArray[inputArray.length - 1] === '5' ||
+      inputArray[inputArray.length - 1] === '6' ||
+      inputArray[inputArray.length - 1] === '7' ||
+      inputArray[inputArray.length - 1] === '8' ||
+      inputArray[inputArray.length - 1] === '9' ||
+      inputArray[inputArray.length - 1] === '0')
+  ) {
+    const temporaryValue = inputArray[inputArray.length - 1];
+    inputArray.pop();
+    inputArray.push('*');
+    inputArray.push(' ');
+    inputArray.push(temporaryValue);
+    return;
+  }
+  if (
+    inputArray[inputArray.length - 2] === ') ' &&
+    (inputArray[inputArray.length - 1] === ' + ' ||
+      inputArray[inputArray.length - 1] === ' - ' ||
+      inputArray[inputArray.length - 1] === ' * ' ||
+      inputArray[inputArray.length - 1] === ' / ' ||
+      inputArray[inputArray.length - 1] === '+ ' ||
+      inputArray[inputArray.length - 1] === '- ' ||
+      inputArray[inputArray.length - 1] === '* ' ||
+      inputArray[inputArray.length - 1] === '/ ')
+  ) {
+    const temporaryValue = inputArray[inputArray.length - 1];
+    inputArray.pop();
+    inputArray.pop();
+    inputArray.push(')');
+    inputArray.push(temporaryValue);
+    return;
+  }
+  if (
+    inputArray[inputArray.length - 2] === ') ' &&
+    inputArray[inputArray.length - 1] === ' ('
+  ) {
+    inputArray.pop();
+    inputArray.push('*');
+    inputArray.push(' (');
+    return;
+  }
 }
 
 function checkZeros() {
@@ -180,10 +328,22 @@ function checkZeros() {
   const temporaryArray = [];
   elementOfArray.map(item => {
     const miniArray = item.split('');
-    while (miniArray.indexOf('0') === 0) {
-      miniArray.shift();
+    if (miniArray.length !== 1) {
+      while (miniArray.indexOf('0') === 0) {
+        miniArray.shift();
+      }
     }
     temporaryArray.push(miniArray.join(''));
   });
   inputValue = temporaryArray.join(' ');
+}
+
+function checkDots() {
+  const elementOfArray = inputValue.split(' ');
+  elementOfArray.map(item => {
+    const miniArray = item.split('');
+    if (miniArray.includes('.')) {
+      inputArray.pop();
+    }
+  });
 }
