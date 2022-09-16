@@ -4,6 +4,9 @@
   left: 50%;
   transform: translate(-77%, -50%);
   display: flex;
+  @media screen and (max-width: 1000px) {
+    transform: translate(-50%, -50%);
+  }
   &__input {
     display: block;
     width: 240px;
@@ -41,9 +44,6 @@
     &:focus {
       color: rgba(111, 111, 111, 0.9);
     }
-  }
-  @media screen and (max-width: 1000px) {
-    transform: translate(-50%, -50%);
   }
 }
 .container__list {
