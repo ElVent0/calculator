@@ -1,5 +1,4 @@
 import Notiflix from 'notiflix';
-// import './sass/main.css';
 
 const listEl = document.querySelector('[data-info="list"]');
 const inputEl = document.querySelector('[data-info="input"]');

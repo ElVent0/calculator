@@ -5,6 +5,11 @@
   transform: translate(-77%, -50%);
   display: flex;
 }
+@media screen and (max-width: 1000px) {
+  .container {
+    transform: translate(-50%, -50%);
+  }
+}
 .container__input {
   display: block;
   width: 240px;
